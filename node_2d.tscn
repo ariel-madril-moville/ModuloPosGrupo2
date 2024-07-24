@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=3 uid="uid://bckcrrd2ay0pf"]
+
+[ext_resource type="Texture2D" uid="uid://d2d1bdvqtddqd" path="res://barco.png" id="1_2o2tl"]
+[ext_resource type="Texture2D" uid="uid://3ratbqoic7y3" path="res://rio.jpg" id="1_fwfks"]
+[ext_resource type="Script" path="res://Barco.gd" id="2_ckon4"]
+[ext_resource type="Texture2D" uid="uid://c83g6k5rbo8og" path="res://bicicleta.png" id="2_xbeal"]
+[ext_resource type="Script" path="res://Bicicleta.gd" id="4_7n55l"]
+[ext_resource type="Texture2D" uid="uid://bgrj8o1bd6sew" path="res://obstaculo.png" id="4_c1hl2"]
+[ext_resource type="AudioStream" uid="uid://bcsl6mnwty15e" path="res://pirate-tavern-full-version-167990.mp3" id="7_glfd2"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Rio" type="Sprite2D" parent="."]
+position = Vector2(574, 342.25)
+scale = Vector2(1.4092, 1.5086)
+texture = ExtResource("1_fwfks")
+
+[node name="Barco" type="Sprite2D" parent="Rio"]
+position = Vector2(5.677, -7.45723)
+scale = Vector2(1.59949, 0.82593)
+texture = ExtResource("1_2o2tl")
+script = ExtResource("2_ckon4")
+
+[node name="Bicicleta" type="Sprite2D" parent="Rio/Barco"]
+position = Vector2(131.568, -10.4977)
+scale = Vector2(0.0181119, 0.0304209)
+texture = ExtResource("2_xbeal")
+script = ExtResource("4_7n55l")
+
+[node name="Obstaculo" type="Sprite2D" parent="Rio/Barco"]
+position = Vector2(-54.9096, 13.6081)
+scale = Vector2(0.0165606, 0.0334047)
+texture = ExtResource("4_c1hl2")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 230.0
+offset_top = 551.0
+offset_right = 329.0
+offset_bottom = 582.0
+text = "AndaFrente"
+metadata/_edit_use_anchors_ = true
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 232.0
+offset_top = 589.0
+offset_right = 303.0
+offset_bottom = 620.0
+text = "AndaRé"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 236.0
+offset_top = 523.0
+offset_right = 281.0
+offset_bottom = 546.0
+text = "Barco"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 116.0
+offset_top = 523.0
+offset_right = 181.0
+offset_bottom = 546.0
+text = "Bicicleta"
+metadata/_edit_use_anchors_ = true
+
+[node name="Button4" type="Button" parent="."]
+offset_left = 112.0
+offset_top = 585.0
+offset_right = 183.0
+offset_bottom = 616.0
+text = "Pula"
+metadata/_edit_use_anchors_ = true
+
+[node name="Button3" type="Button" parent="."]
+offset_left = 110.0
+offset_top = 548.0
+offset_right = 209.0
+offset_bottom = 579.0
+text = "AndaRe"
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_glfd2")
+autoplay = true
+
+[connection signal="button_down" from="Button" to="Rio/Barco" method="_on_button_button_down"]
+[connection signal="button_down" from="Button2" to="Rio/Barco" method="_on_button_2_button_down"]
+[connection signal="button_down" from="Button4" to="Rio/Barco/Bicicleta" method="_on_button_bicleta_pula"]
+[connection signal="button_down" from="Button3" to="Rio/Barco/Bicicleta" method="_on_button_bicleta_anda_re"]
